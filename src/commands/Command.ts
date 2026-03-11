@@ -19,7 +19,7 @@ export abstract class Command<Arguments = Record<string, string | null | string[
     const { opts } = parseDescriptions(this.globalOptions) as any;
     let optsList = "";
     for(const name in opts) {
-      const padding = ' '.repeat(20 - name.length);
+      const padding = ' '.repeat(Math.max(0, 20 - name.length));
       optsList += `  ${chalk.green(name)}${padding}${opts[name] ?? ""}\n`;
     }
     console.log(`${chalk.yellow("Options")}:\n${optsList}`);
@@ -147,7 +147,7 @@ export abstract class Command<Arguments = Record<string, string | null | string[
       let hasAtleastOneArgument = false;
       for(const name in args) {
         hasAtleastOneArgument = true;
-        const padding = ' '.repeat(20 - name.length);
+        const padding = ' '.repeat(Math.max(0, 20 - name.length));
         const description = args[name];
         argsList += `  ${chalk.green(name)}${padding}${description ?? ""}\n`;
       }
@@ -156,7 +156,7 @@ export abstract class Command<Arguments = Record<string, string | null | string[
     
     let optsList = "";
     for(const name in opts) {
-      const padding = ' '.repeat(20 - name.length);
+      const padding = ' '.repeat(Math.max(0, 20 - name.length));
       optsList += `  ${chalk.green(name)}${padding}${opts[name] ?? ""}\n`;
     }
     console.log(`${chalk.yellow("Options")}:\n${optsList}`);
